@@ -8,7 +8,7 @@ on:
 
 jobs:
   check_codestyle:
-    name: TypeScript codestyle
+    name: Codestyle checks
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -17,5 +17,5 @@ jobs:
       - name: Setup NodeJS
         uses: ./.github/actions/setup-node
 
-      - name: Check TypeScript formatting
+      - name: Check formatting
         run: pnpm format:check
