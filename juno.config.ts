@@ -2,7 +2,7 @@ import { defineConfig } from "@junobuild/config";
 
 export default defineConfig({
   satellite: {
-    id: "itmdf-xiaaa-aaaal-ar3ca-cai",
+    id: "<your-satellite-id>",
     source: "dist",
     predeploy: [
       "rm -rf dist .sanity",

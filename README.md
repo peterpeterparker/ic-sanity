@@ -28,16 +28,17 @@ Make sure you have the following installed:
    pnpm install
    ```
 
-2. Create a satellite on Juno ([guide](https://juno.build/docs/create-a-satellite))
+2. Create a satellite on Juno ([guide](https://juno.build/docs/create-a-satellite)). Copy the satellite ID once done.
 3. Login to the Juno console and link the new satellite once asked:
 
    ```bash
    juno login
    ```
 
-4. Create a new project with a dataset on Sanity ([guide](https://www.sanity.io/docs/getting-started-with-sanity)). Copy the project ID and the dataset name once done.
-5. Set the environment variables in the `.env` file, following the [.env.example](./.env.example) template.
-6. Deploy your project with the Juno CLI:
+4. Update the `<your-satellite-id>` in the [`juno.config.ts`](./juno.config.ts) file with the new satellite ID.
+5. Create a new project with a dataset on Sanity ([guide](https://www.sanity.io/docs/getting-started-with-sanity)). Copy the project ID and the dataset name once done.
+6. Set the environment variables in the `.env` file, following the [.env.example](./.env.example) template.
+7. Deploy your project with the Juno CLI:
    ```bash
    juno deploy
    ```
