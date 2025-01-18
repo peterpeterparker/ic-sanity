@@ -39,6 +39,7 @@
     "sanity": "^3.70.0",
     "styled-components": "^6.1"
   },
+  "packageManager": "pnpm@9.14.2",
   "engines": {
     "node": "^20",
     "pnpm": "^9",
