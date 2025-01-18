@@ -1,33 +1,62 @@
-# Juno: Astro Starter Kit
+# ic-sanity
 
-```sh
-npm create juno@latest -- --template astro-starter
-```
+This template enables you to deploy an Astro + Sanity website on the Internet Computer.
 
-> 🧑‍🚀 **Seasoned dev?** Delete this file. Have fun!
+> 🌟 **New to Juno?** Check it out at [juno.build](https://juno.build/)
 
-![A screenshot of the starter kit](https://raw.githubusercontent.com/junobuild/create-juno/main/screenshots/screenshot-starter.png)
+> 🚀 **New to Astro?** Check it out at [astro.build](https://astro.build/)
 
-A starter kit developed for [Juno](https://juno.build) using [Astro](https://docs.astro.build).
+> 🎯 **New to Sanity?** Check it out at [sanity.io](https://sanity.io/)
 
-## ✨ Links & Resources
+## Usage
 
-- Looking to get started with Juno? Check out the [documentation](https://juno.build).
-- Have a look at [Astro](https://docs.astro.build) for question regarding the templates.
-- Got questions, comments or feedback? [Join our discord](https://discord.gg/wHZ57Z2RAG) or [OpenChat](https://oc.app/community/vxgpi-nqaaa-aaaar-ar4lq-cai/?ref=xanzv-uaaaa-aaaaf-aneba-cai).
+### Requirements
 
-## 🧞 Commands
+Make sure you have the following installed:
 
-All commands are run from the root of the project, from a terminal:
+- [Node.js](https://nodejs.org/en/download/)
+- [pnpm](https://pnpm.io/)
+- [Juno CLI](https://juno.build/docs/miscellaneous/cli)
 
-| Command          | Action                                                      |
-| :--------------- | :---------------------------------------------------------- |
-| `npm install`    | Installs dependencies                                       |
-| `npm run dev`    | Starts frontend dev server at `localhost:4321`              |
-| `juno dev start` | Quickstart the local development emulator (requires Docker) |
-| `npm run build`  | Build your production site to `./dist/`                     |
-| `juno deploy`    | Deploy your project to a Satellite                          |
+### Getting started
 
-## 🚀 Launch
+1. Clone this repository (or use it as a template for your own project) and install dependencies:
 
-Explore this [guide](https://juno.build/docs/add-juno-to-an-app/create-a-satellite) to launch your Satellite into orbit via Juno's [administration console](https://console.juno.build).
+   ```bash
+   git clone https://github.com/ICP-HUB-Italy-Ticino/ic-sanity.git
+   cd ic-sanity
+   pnpm install
+   ```
+
+2. Create a satellite on Juno ([guide](https://juno.build/docs/create-a-satellite))
+3. Login to the Juno console and link the new satellite once asked:
+
+   ```bash
+   juno login
+   ```
+
+4. Create a new project with a dataset on Sanity ([guide](https://www.sanity.io/docs/getting-started-with-sanity)). Copy the project ID and the dataset name once done.
+5. Set the environment variables in the `.env` file, following the [.env.example](./.env.example) template.
+6. Deploy your project with the Juno CLI:
+   ```bash
+   juno deploy
+   ```
+
+You can now access your website at `https://<your-satellite-id>.icp0.io` and the [Sanity Studio](https://www.sanity.io/studio) at `https://<your-satellite-id>.icp0.io/studio`.
+
+### Set up the GitHub Action
+
+In order to deploy your website to production every time you push to the `main` branch, you need to set up a GitHub Action. There's already a GitHub Action set up for this repository, check it out at [deploy.yaml](./.github/workflows/deploy.yaml).
+
+You need to configure the same environment variables of your `.env` file as GitHub Action variables ([guide](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/store-information-in-variables)):
+
+- `SANITY_STUDIO_PROJECT_ID`
+- `SANITY_STUDIO_DATASET`
+
+> We recommend you to set up GitHub variables instead of secrets, so that you can always lookup the values of these variables at any time.
+
+### Set up Sanity for automatic deployment
+
+In order to update the content of the website every time you save a document on Sanity, you need to set up a Sanity to trigger a deployment on GitHub.
+
+TBD
