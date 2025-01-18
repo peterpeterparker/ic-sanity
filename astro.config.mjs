@@ -3,9 +3,12 @@ import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import juno from "@junobuild/vite-plugin";
 import tailwind from "@astrojs/tailwind";
-
 import sanity from "@sanity/astro";
 import react from "@astrojs/react";
+import { loadEnv } from "vite";
+
+export const { SANITY_STUDIO_PROJECT_ID, SANITY_STUDIO_DATASET } = loadEnv(process.env.NODE_ENV || "development", process.cwd(), "");
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,8 +21,8 @@ export default defineConfig({
     sitemap(),
     tailwind(),
     sanity({
-      projectId: "ftezax4j",
-      dataset: "production",
+      projectId: SANITY_STUDIO_PROJECT_ID,
+      dataset: SANITY_STUDIO_DATASET,
       // Set useCdn to false if you're building statically.
       useCdn: false,
       // We don't set this here to avoid SSR issues.

@@ -5,19 +5,46 @@ on:
     branches: [main]
 
 jobs:
+  check_run_conditions:
+    runs-on: ubuntu-latest
+    outputs:
+      should_run: ${{ steps.check_template.outputs.should_run }}
+    steps:
+      - name: Check if repo is template
+        id: check_template
+        run: |
+          IS_TEMPLATE=$(curl -s -H "Authorization: token ${{ github.token }}" \
+            "https://api.github.com/repos/${{ github.repository }}" | \
+            jq -r .is_template)
+          if [ "$IS_TEMPLATE" = "true" ]; then
+            echo "should_run=false" >> $GITHUB_OUTPUT
+          else
+            echo "should_run=true" >> $GITHUB_OUTPUT
+          fi
+
   build:
+    needs: check_run_conditions
+    if: needs.check_run_conditions.outputs.should_run == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
         with:
-          node-version: 22
-          registry-url: "https://registry.npmjs.org"
+          run_install: false
 
-      - name: Install Dependencies
-        run: npm ci
+      - name: Install NodeJS
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.node-version'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        shell: bash
+        run: pnpm i --frozen-lockfile
 
       - name: Build
         run: npm run build
