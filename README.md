@@ -69,7 +69,7 @@ You need to configure the same environment variables of your `.env` file as GitH
 - `SANITY_STUDIO_PROJECT_ID`
 - `SANITY_STUDIO_DATASET`
 
-> We recommend you to set up GitHub variables instead of secrets, so that you can always lookup the values of these variables at any time. If you choose to set up secrets instead, make sure you update the [deploy.yaml](./.github/workflows/deploy.yaml) action to read the values from the secrets.
+> We recommend you to set up GitHub variables instead of secrets for the `SANITY_STUDIO_*` variables, so that you can always lookup the values of these variables at any time. If you choose to set up secrets instead, make sure you update the [deploy.yaml](./.github/workflows/deploy.yaml) action to read the values from the secrets.
 
 ### Set up Sanity deployments
 
