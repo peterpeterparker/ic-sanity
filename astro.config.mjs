@@ -7,8 +7,11 @@ import sanity from "@sanity/astro";
 import react from "@astrojs/react";
 import { loadEnv } from "vite";
 
-export const { SANITY_STUDIO_PROJECT_ID, SANITY_STUDIO_DATASET } = loadEnv(process.env.NODE_ENV || "development", process.cwd(), "");
-
+export const { SANITY_STUDIO_PROJECT_ID, SANITY_STUDIO_DATASET } = loadEnv(
+  process.env.NODE_ENV || "development",
+  process.cwd(),
+  "",
+);
 
 // https://astro.build/config
 export default defineConfig({
