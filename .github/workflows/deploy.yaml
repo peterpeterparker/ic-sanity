@@ -23,7 +23,7 @@ jobs:
           fi
       - name: Print should_run
         run: |
-          echo "should_run: ${{ steps.check_template.outputs.should_run }}""
+          echo "should_run: ${{ steps.check_template.outputs.should_run }}"
 
   build:
     needs: check_run_conditions
