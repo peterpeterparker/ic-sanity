@@ -3,6 +3,10 @@ name: Deploy to Juno
 on:
   push:
     branches: [main]
+  # Triggered manually
+  workflow_dispatch:
+  # Triggered from webhooks (e.g. from Sanity)
+  repository_dispatch:
 
 jobs:
   check_run_conditions:
