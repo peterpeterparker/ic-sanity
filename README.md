@@ -64,10 +64,11 @@ In order to deploy your website to production every time you push to the `main` 
 
 You need to configure the same environment variables of your `.env` file as GitHub Action variables ([guide](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/store-information-in-variables)):
 
+- `JUNO_TOKEN` ([guide](https://juno.build/docs/guides/github-actions))
 - `SANITY_STUDIO_PROJECT_ID`
 - `SANITY_STUDIO_DATASET`
 
-> We recommend you to set up GitHub variables instead of secrets, so that you can always lookup the values of these variables at any time.
+> We recommend you to set up GitHub variables instead of secrets, so that you can always lookup the values of these variables at any time. If you choose to set up secrets instead, make sure you update the [deploy.yaml](./.github/workflows/deploy.yaml) action to read the values from the secrets.
 
 ### Set up Sanity deployments
 
