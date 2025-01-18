@@ -38,9 +38,9 @@ Make sure you have the following installed:
 4. Update the `<your-satellite-id>` in the [`juno.config.ts`](./juno.config.ts) file with the new satellite ID.
 5. Create a new project with a dataset on Sanity ([guide](https://www.sanity.io/docs/getting-started-with-sanity)). Copy the project ID and the dataset name once done.
 6. Set the environment variables in the `.env` file, following the [.env.example](./.env.example) template.
-7. Deploy your project with the Juno CLI:
+7. Deploy your project on Juno:
    ```bash
-   juno deploy
+   pnpm run deploy
    ```
 
 You can now access your website at `https://<your-satellite-id>.icp0.io` and the [Sanity Studio](https://www.sanity.io/studio) at `https://<your-satellite-id>.icp0.io/studio`.
@@ -48,7 +48,7 @@ You can now access your website at `https://<your-satellite-id>.icp0.io` and the
 Every time you make a change, you have to deploy your project again with the Juno CLI:
 
 ```bash
-juno deploy
+pnpm run deploy
 ```
 
 Have a look at the [Set up the GitHub Action](#set-up-the-github-action) and/or [Set up Sanity deployments](#set-up-sanity-deployments) to configure automatic deployments.

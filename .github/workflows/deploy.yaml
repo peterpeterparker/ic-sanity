@@ -25,10 +25,13 @@ jobs:
         run: |
           echo "should_run: ${{ steps.check_template.outputs.should_run }}"
 
-  build:
+  build-and-deploy:
     needs: check_run_conditions
     if: needs.check_run_conditions.outputs.should_run == 'true'
     runs-on: ubuntu-latest
+    env:
+      SANITY_STUDIO_PROJECT_ID: ${{ vars.SANITY_STUDIO_PROJECT_ID }}
+      SANITY_STUDIO_DATASET: ${{ vars.SANITY_STUDIO_DATASET }}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
@@ -36,14 +39,13 @@ jobs:
       - name: Setup NodeJS
         uses: ./.github/actions/setup-node
 
+      - name: Install Juno CLI
+        run: pnpm add -g @junobuild/cli
+
       - name: Build
         run: pnpm build
 
       - name: Deploy to Juno
-        uses: junobuild/juno-action@main
-        with:
-          args: deploy
+        run: pnpm run deploy
         env:
           JUNO_TOKEN: ${{ secrets.JUNO_TOKEN }}
-          SANITY_STUDIO_PROJECT_ID: ${{ vars.SANITY_STUDIO_PROJECT_ID }}
-          SANITY_STUDIO_DATASET: ${{ vars.SANITY_STUDIO_DATASET }}
