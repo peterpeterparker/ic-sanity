@@ -7,11 +7,11 @@ import tailwind from "@astrojs/tailwind";
 import sanity from "@sanity/astro";
 import react from "@astrojs/react";
 
-import node from "@astrojs/node";
-
 // https://astro.build/config
 export default defineConfig({
   site: "https://itmdf-xiaaa-aaaal-ar3ca-cai.icp0.io",
+
+  output: "static",
 
   integrations: [
     mdx(),
@@ -22,7 +22,11 @@ export default defineConfig({
       dataset: "production",
       // Set useCdn to false if you're building statically.
       useCdn: false,
-      studioBasePath: "/studio",
+      // We don't set this here to avoid SSR issues.
+      // See https://github.com/sanity-io/sanity-astro/issues/232.
+      // We rather compile the Studio manually and place it in the dist/studio folder before deploying.
+      // See https://www.sanity.io/docs/deployment#ed3cd78ea4eb (the "Self-hosting the Studio" section).
+      // studioBasePath: "/studio"
     }),
     react(),
   ],
@@ -34,10 +38,4 @@ export default defineConfig({
   devToolbar: {
     enabled: false,
   },
-
-  output: "static",
-
-  adapter: node({
-    mode: "standalone",
-  }),
 });
