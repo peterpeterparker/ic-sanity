@@ -14,7 +14,7 @@ jobs:
         uses: ./.github/actions/setup-node
 
       - name: Deploy to Juno
-        uses: junobuild/juno-action@9712626cb52c74de794d51633b24f242e8f0b18f
+        uses: junobuild/juno-action@main
         with:
           args: deploy
         env:
