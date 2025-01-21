@@ -1,0 +1,21 @@
+name: Debug pnpm and Juno action
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: Setup NodeJS
+        uses: ./.github/actions/setup-node
+
+      - name: Deploy to Juno
+        uses: junobuild/juno-action@main
+        with:
+          args: deploy
+        env:
+          JUNO_TOKEN: ${{ secrets.JUNO_TOKEN }}
